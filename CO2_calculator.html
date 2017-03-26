@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Simple carbon calculator</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+    body {
+		font: 12pt arial;
+		margin: 20;
+		color: #000000;
+		background-color: #ffffff;
+	}
+    h1 {
+		margin: 0; padding: 8px; font-size: 16pt;
+		}
+    h2 {
+		font-size: 14pt;
+		}
+    a:hover {
+		text-decoration: none;
+		}
+    #header {
+	background: #ffffff;
+	height: 40px;
+	text-align: center;
+	}
+	content {
+	margin: 40px 80px;
+	text-align: justify;
+	}
+
+
+    .input {width:100px; height:30px; display:inline-block; border: 1px solid #DDDDDD; font-size:24px; font-weight:bold; color:#666666;}
+
+   </style>
+</head>
+<body>
+
+<div id="header">
+<h1>Simple carbon calculator</h1>
+</div>
+
+<!-- Start content -->
+<div id="content">
+
+<h2>Home emissions</h2>
+<p>Your home is the source of emissions via its space heating and water heating system.
+Space and water heating is generally separated, as the rooms are often heated by a <a href="https://en.wikipedia.org/wiki/Central_heating">central heating system</a> (for instance radiators that are heated on a separate water circuit, heated by a furnace -burning fuel or gas-), and the hot water system then being another separate water circuit, heated by an electric, gas or fuel-fired boiler. There are also setups that have a single (combined) circuit though, but this is more rare. Whatever the case, if you use an electric heater for either one, you'll need to calculate the emissions out using the "electricity carbon calculator" below.</p>
+
+<p>You might also have additional (non-electric) space heaters, such as a fireplace or wood stove.<br />
+If you have a fireplace, wood or coal stove, you also need to calculate the emissions of that -in case you have not replanted the same amount of trees as what you've burned that year in your fireplace or wood stove-.</p>
+
+<h2>Space heating</h2>
+<p><input type="text" id="sh1i1" class="input" value="0"></input> m³ of natural gas X 11,41 kWh (*1) = <input type="text" id="sh1i2" class="input" value="0"></input> kWh X 0,6kg CO2/kWh = <input type="text" id="sh1i3" class="input" value="0"></input> kg CO2</p>
+<p><input type="text" id="sh2i1" class="input" value="0"></input> l of number 2 fuel oil X 2,8 kg CO2/l (*2) = <input type="text" id="sh2i2" class="input" value="0"></input> kg CO2</p>
+<p><input type="text" id="sh3i1" class="input" value="0"></input> m³ of wood X 750 kWh (*3) X 1,5 kg CO2 per kWh= <input type="text" id="sh3i2" class="input" value="0"></input> kg CO2</p>
+<p><input type="text" id="sh4i1" class="input" value="0"></input> kg of coal X 8 kWh X 1 kg CO2 per kWh (*4)= <input type="text" id="sh4i2" class="input" value="0"></input> kg CO2</p>
+
+<h2>Water heating</h2>
+<p>If you have an electric boiler, calculate using the electricity carbon calculator below.</p>
+
+<p>For gas-fired boilers:</p>
+<p><input type="text" id="wh1i1" class="input" value="0"></input> m³ of natural gas X 11,41 kWh (*1) = <input type="text" id="wh1i2" class="input" value="0"></input> kWh X 0,6kg CO2/kWh = <input type="text" id="wh1i3" class="input" value="0"></input> kg CO2</p>
+
+<h2>Notes</h2>
+<p>*1: There is 11,41 kWh in 1 m³ of natural gas (compressed at the regular pressure in gas distribution networks)<br />
+*2: There is 3,15 kg CO2 in 1 kg (=1,12l -see http://www.endmemo.com/cconvert/kgl.php -) of fuel oil; see http://numero57.net/2008/03/20/carbon-dioxide-emissions-per-barrel-of-crude/ ; this figure also matches roughly with the data from https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references<br />
+*3: There is 750 to 1000 kWh in 1 m³ of wood (variation depends on wood species; see http://www.fao.org/3/a-i4441e.pdf )<br />
+*4: There is 8 kWh in 1 kg of coal; see https://www.euronuclear.org/info/encyclopedia/coalequivalent.htm</p>
+
+<h2>Vehicle emissions</h2>
+<p>If your vehicle is battery-powered (electric), use the electricity carbon calculator below.<br />
+If it is non-electric (so powered by fossil fuels -burned in a internal combustion engine-), you'll need to calculate it here below.<br />
+If you are using biofuels in your internal combustion engine, no emissions will result, and you can dismiss this section.<br />
+Many public transport vehicles (like buses, airplanes, ...) however use fossil fuels and if you make use of these, you will need to calculate them. That said, the emissions of these vehicles are shared over all passengers using them.</p>
+
+<p><input type="text" id="ve1i1" class="input" value="0"></input> km X <input type="text" id="ve1i2" class="input" value="0"></input> l/km X 2,3 kg of CO2/liter of gasoline = <input type="text" id="ve1i3" class="input" value="0"></input> kg of CO2 / <input type="text" id="ve1i4" class="input" value="0"></input> passengers = <input type="text" id="ve1i5" class="input" value="0"></input> kg of CO2 per passenger</p>
+<p><input type="text" id="ve2i1" class="input" value="0"></input> km X <input type="text" id="ve2i2" class="input" value="0"></input> l/km X 2,6 kg of CO2/liter of diesel = <input type="text" id="ve2i3" class="input" value="0"></input> kg of CO2 / <input type="text" id="ve2i4" class="input" value="0"></input> passengers = <input type="text" id="ve2i5" class="input" value="0"></input> kg of CO2 per passenger</p>
+<p><input type="text" id="ve3i1" class="input" value="0"></input> km X <input type="text" id="ve3i2" class="input" value="0"></input> l/km X 0,6 kg of CO2/liter of CNG = <input type="text" id="ve3i3" class="input" value="0"></input> kg of CO2 / <input type="text" id="ve3i4" class="input" value="0"></input> passengers = <input type="text" id="ve3i5" class="input" value="0"></input> kg of CO2 per passenger</p>
+<p><input type="text" id="ve4i1" class="input" value="0"></input> km X <input type="text" id="ve4i2" class="input" value="0"></input> l/km X 2,6 kg of CO2/liter of kerosene = <input type="text" id="ve4i3" class="input" value="0"></input> kg of CO2 / <input type="text" id="ve4i4" class="input" value="0"></input> passengers = <input type="text" id="ve4i5" class="input" value="0"></input> kg of CO2 per passenger</p>
+<p><input type="text" id="ve5i1" class="input" value="0"></input> km X <input type="text" id="ve5i2" class="input" value="0"></input> l/km X 2,5 kg of CO2/liter of Jet-A fuel = <input type="text" id="ve5i3" class="input" value="0"></input> kg of CO2 / <input type="text" id="ve5i4" class="input" value="0"></input> passengers = <input type="text" id="ve5i5" class="input" value="0"></input> kg of CO2 per passenger</p>
+<p><input type="text" id="ve6i1" class="input" value="0"></input> km X <input type="text" id="ve6i2" class="input" value="0"></input> l/km X 2,2 kg of CO2/liter of Avgas = <input type="text" id="ve6i3" class="input" value="0"></input> kg of CO2 / <input type="text" id="ve6i4" class="input" value="0"></input> passengers = <input type="text" id="ve6i5" class="input" value="0"></input> kg of CO2 per passenger</p>
+
+<h2>Notes</h2>
+<p>You'll need to look up the average consumption of your vehicle (liter per km) yourself.<br />
+For the fuel used by your vehicle: you'll also need to look this up yourself. Do note though that most passenger airplanes use kerosene. Jet-A (jet fuel) and Avgas (aviation gas) are used mainly by small aircraft.<br />
+Most large commercial aircraft use about 2000-3000 liter per hour and have a speed of 850 km/h, meaning consumption is about 2,35 to 3,5 liter of kerosine per km (if only 1 passenger is transported).<br />
+Most buses use about 26 liter of diesel fuel per 100 km and have about 50 passenger seats.<br />
+Most container ships (Panamax class, slow steaming -35 km/h-) <a href="https://people.hofstra.edu/geotrans/eng/ch8en/conc8en/fuel_consumption_containerships.html">consume about 80 tons</a> of <a href="https://en.wikipedia.org/wiki/Fuel_oil#Classes">number 5 or number 6 fuel oil</a> per day. 80 tons of fuel oil per day equals to <a href="http://www.endmemo.com/cconvert/kgl.php">89840 liter/day</a> or hence 3743 liter/hour. At a speed of 35 km/h, this makes for a fuel consumpton of 106 liter/km. These vessels are able to <a href="http://www.tappi.org/content/Events/11BIOPRO/2.2Stephen.pdf">transport up to 53 500 tons of material</a> (divided over 300 to 5000 <a href="https://web.archive.org/web/20160825002153/http://www.seaplus.com/container.html">20 foot containers</a> a.k.a. TEU's).</p>
+
+<h2>Electricity carbon calculator</h2>
+<p><input type="text" id="ecc1i1" class="input" value="0"></input> kWh X 0,004 kg CO2/kWh of hydroelectric power = <input type="text" id="ecc1i2" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="ecc2i1" class="input" value="0"></input> kWh X 0,006 kg CO2/kWh of nuclear power = <input type="text" id="ecc2i2" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="ecc3i1" class="input" value="0"></input> kWh X 0,02 kg CO2/kWh of wind power = <input type="text" id="ecc3i2" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="ecc4i1" class="input" value="0"></input> kWh X 0,10 kg CO2/kWh of PV solar panel power = <input type="text" id="ecc4i2" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="ecc5i1" class="input" value="0"></input> kWh X 0,6 kg CO2/kWh of natural gas = <input type="text" id="ecc5i2" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="ecc6i1" class="input" value="0"></input> kWh X 1 kg CO2/kWh of coal = <input type="text" id="ecc6i2" class="input" value="0"></input> kg of CO2</p>
+
+<h2>Animal-derived food carbon calculator</h2>
+<p>For the production of several types of food (derived from animals), methane (and thus carbon) has also been emitted by the animals via their digestion process. Given that plants don't have a digestive tract, there are no emissions for plant-based foods. Since the emissions are relatively large, we need to incorporate these as well. We should note that depending on the fodder used, the first or the latter value will need to be used. Also note that only 3 types of animals (and 2 animal products) are presented here. To calculate other animals/animal products (not listed here), use either one of these 3 types (choose the one that is closest to it).</p>
+
+<p><input type="text" id="fcc1i1" class="input" value="0"></input> kg of beef (cattle) X 14 to 32 kg CO2 = <input type="text" id="fcc1i2" class="input" value="0"></input> kg to <input type="text" id="fcc1i3" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="fcc2i1" class="input" value="0"></input> kg of porc meat X 3,9 to 10 kg CO2 = <input type="text" id="fcc2i2" class="input" value="0"></input> kg to <input type="text" id="fcc2i3" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="fcc3i1" class="input" value="0"></input> kg of chicken meat X 3,7 to 6,9 kg CO2 = <input type="text" id="fcc3i2" class="input" value="0"></input> kg to <input type="text" id="fcc3i3" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="fcc4i1" class="input" value="0"></input> kg of milk (from cattle) X 0,8 to 1,3 kg CO2 = <input type="text" id="fcc4i2" class="input" value="0"></input> kg to <input type="text" id="fcc4i3" class="input" value="0"></input> kg of CO2</p>
+<p><input type="text" id="fcc5i1" class="input" value="0"></input> kg of eggs (from chickens) X 3,9 to 4,9 kg CO2= <input type="text" id="fcc5i2" class="input" value="0"></input> kg to <input type="text" id="fcc5i3" class="input" value="0"></input> kg of CO2</p>
+
+<h2>Notes</h2>
+<p>Figures were obtained from "Livestock Farming Systems and their Environmental Impacts" (Quest magazine, september 2009)</p>
+
+<h2>Carbon offset price</h2>
+<p>The price per kg of CO2 you'll end up paying will depend on the <a href="https://en.wikipedia.org/wiki/Carbon_offset">CER</a> (certified emission reductions) supplier you select. The price of these is country-specific, and <a href="https://en.wikipedia.org/wiki/Carbon_price">can range from 5€ to 30€ per ton of CO2</a>.<br />
+So, an average price you'll pay is 17€ (or hence 0,017 €/kg of CO2).<br />
+Multiply this amount by the CO2 values you've found for your home and transport and you'll have the average total cost for your offsetting.</p>
+<p>For a list of CER suppliers, see <a href="http://ecofrugalism.blogspot.com">here</a></p>
+
+<!-- End content -->
+</div>
+
+<script type="text/javascript">
+
+  function format(val) {
+
+    return parseFloat(val).toFixed(3).replace(".", ",").replace(/0+$/, "").replace(/,$/, "");
+
+  }
+
+  // Space heating
+  // 1
+  var sh1i1 = document.getElementById('sh1i1');
+  var sh1i2 = document.getElementById('sh1i2');
+  var sh1i3 = document.getElementById('sh1i3');
+  sh1i1.addEventListener('input', function() {
+    sh1i2.value = format(sh1i1.value.replace(",", ".") * 11.41);
+    sh1i3.value = format(sh1i2.value.replace(",", ".") * 0.6);
+    sh1i1.value = sh1i1.value.replace(".", ",");
+  });
+  sh1i2.addEventListener('input', function() {
+    sh1i1.value = format(sh1i2.value.replace(",", ".") / 11.41);
+    sh1i3.value = format(sh1i2.value.replace(",", ".") * 0.6);
+    sh1i2.value = sh1i2.value.replace(".", ",");
+  });
+  sh1i3.addEventListener('input', function() {
+    sh1i2.value = format(sh1i3.value.replace(",", ".") / 0.6);
+    sh1i1.value = format(sh1i2.value.replace(",", ".") / 11.41);
+    sh1i3.value = sh1i3.value.replace(".", ",");
+  });
+  // 2
+  var sh2i1 = document.getElementById('sh2i1');
+  var sh2i2 = document.getElementById('sh2i2');
+  sh2i1.addEventListener('input', function() {
+    sh2i2.value = format(sh2i1.value.replace(",", ".") * 2.8);
+    sh2i1.value = sh2i1.value.replace(".", ",");
+  });
+  sh2i2.addEventListener('input', function() {
+    sh2i1.value = format(sh2i2.value.replace(",", ".") / 2.8);
+    sh2i2.value = sh2i2.value.replace(".", ",");
+  });
+  // 3
+  var sh3i1 = document.getElementById('sh3i1');
+  var sh3i2 = document.getElementById('sh3i2');
+  sh3i1.addEventListener('input', function() {
+    sh3i2.value = format(sh3i1.value.replace(",", ".") * 750 * 1.5);
+    sh3i1.value = sh3i1.value.replace(".", ",");
+  });
+  sh3i2.addEventListener('input', function() {
+    sh3i1.value = format(sh3i2.value.replace(",", ".") / (750 * 1.5));
+    sh3i2.value = sh3i2.value.replace(".", ",");
+  });
+  // 4
+  var sh4i1 = document.getElementById('sh4i1');
+  var sh4i2 = document.getElementById('sh4i2');
+  sh4i1.addEventListener('input', function() {
+    sh4i2.value = format(sh4i1.value.replace(",", ".") * 8);
+    sh4i1.value = sh4i1.value.replace(".", ",");
+  });
+  sh4i2.addEventListener('input', function() {
+    sh4i1.value = format(sh4i2.value.replace(",", ".") / 8);
+    sh4i2.value = sh4i2.value.replace(".", ",");
+  });
+
+  // Water heating
+  // 1
+  var wh1i1 = document.getElementById('wh1i1');
+  var wh1i2 = document.getElementById('wh1i2');
+  var wh1i3 = document.getElementById('wh1i3');
+  wh1i1.addEventListener('input', function() {
+    wh1i2.value = format(wh1i1.value.replace(",", ".") * 11.41);
+    wh1i3.value = format(wh1i2.value.replace(",", ".") * 0.6);
+    wh1i1.value = wh1i1.value.replace(".", ",");
+  });
+  wh1i2.addEventListener('input', function() {
+    wh1i1.value = format(wh1i2.value.replace(",", ".") / 11.41);
+    wh1i3.value = format(wh1i2.value.replace(",", ".") * 0.6);
+    wh1i2.value = wh1i2.value.replace(".", ",");
+  });
+  wh1i3.addEventListener('input', function() {
+    wh1i2.value = format(wh1i3.value.replace(",", ".") / 0.6);
+    wh1i1.value = format(wh1i2.value.replace(",", ".") / 11.41);
+    wh1i3.value = wh1i3.value.replace(".", ",");
+  });
+
+  // Vehicle Emissions
+  // 1
+  var ve1i1 = document.getElementById('ve1i1');
+  var ve1i2 = document.getElementById('ve1i2');
+  var ve1i3 = document.getElementById('ve1i3');
+  var ve1i4 = document.getElementById('ve1i4');
+  var ve1i5 = document.getElementById('ve1i5');
+  ve1i1.addEventListener('input', function() {
+    ve1i3.value = format(ve1i1.value.replace(",", ".") * ve1i2.value.replace(",", ".") * 2.3);
+    if (ve1i3.value.replace(",", ".") > 0 && ve1i4.value.replace(",", ".") > 0) {
+      ve1i5.value = format(ve1i3.value.replace(",", ".") / ve1i4.value.replace(",", "."));
+    }
+    ve1i1.value = ve1i1.value.replace(".", ",");
+  });
+  ve1i2.addEventListener('input', function() {
+    if (ve1i3.value.replace(",", ".") > 0) ve1i1.value = format(ve1i3.value.replace(",", ".") / ve1i2.value.replace(",", "."));
+    ve1i3.value = format(ve1i1.value.replace(",", ".") * ve1i2.value.replace(",", ".") * 2.3);
+    if (ve1i3.value.replace(",", ".") > 0 && ve1i4.value.replace(",", ".") > 0) {
+      ve1i5.value = format(ve1i3.value.replace(",", ".") / ve1i4.value.replace(",", "."));
+    }
+    ve1i2.value = ve1i2.value.replace(".", ",");
+  });
+  ve1i3.addEventListener('input', function() {
+    ve1i1.value = format(ve1i3.value.replace(",", ".") / 2.3 / ve1i2.value.replace(",", "."));
+    ve1i2.value = format(ve1i3.value.replace(",", ".") / 2.3);
+    if (ve1i3.value.replace(",", ".") > 0 && ve1i4.value.replace(",", ".") > 0) {
+      ve1i5.value = format(ve1i3.value.replace(",", ".") / ve1i4.value.replace(",", "."));
+    }
+    ve1i3.value = ve1i3.value.replace(".", ",");
+  });
+  ve1i4.addEventListener('input', function() {
+    ve1i4.value = Math.round(ve1i4.value.replace(",", "."));
+    if (ve1i3.value.replace(",", ".") > 0 && ve1i4.value > 0) {
+      ve1i5.value = format(ve1i3.value.replace(",", ".") / ve1i4.value);
+    }
+    if (ve1i5.value.replace(",", ".") > 0) {
+      ve1i3.value = format(ve1i5.value.replace(",", ".") * ve1i4.value);
+      ve1i2.value = format(ve1i3.value.replace(",", ".") / 2.3);
+      ve1i1.value = format(ve1i3.value.replace(",", ".") / 2.3 / ve1i2.value.replace(",", "."));
+    }
+  });
+  ve1i5.addEventListener('input', function() {
+    if (ve1i5.value.replace(",", ".") > 0) {
+      ve1i3.value = format(ve1i5.value.replace(",", ".") * ve1i4.value);
+      ve1i2.value = format(ve1i3.value.replace(",", ".") / 2.3);
+      ve1i1.value = format(ve1i3.value.replace(",", ".") / 2.3 / ve1i2.value.replace(",", "."));
+    }
+    ve1i5.value = ve1i5.value.replace(".", ",");
+  });
+  // 2
+  var ve2i1 = document.getElementById('ve2i1');
+  var ve2i2 = document.getElementById('ve2i2');
+  var ve2i3 = document.getElementById('ve2i3');
+  var ve2i4 = document.getElementById('ve2i4');
+  var ve2i5 = document.getElementById('ve2i5');
+  ve2i1.addEventListener('input', function() {
+    ve2i3.value = format(ve2i1.value.replace(",", ".") * ve2i2.value.replace(",", ".") * 2.6);
+    if (ve2i3.value.replace(",", ".") > 0 && ve2i4.value.replace(",", ".") > 0) {
+      ve2i5.value = format(ve2i3.value.replace(",", ".") / ve2i4.value.replace(",", "."));
+    }
+    ve2i1.value = ve2i1.value.replace(".", ",");
+  });
+  ve2i2.addEventListener('input', function() {
+    if (ve2i3.value.replace(",", ".") > 0) ve2i1.value = format(ve2i3.value.replace(",", ".") / ve2i2.value.replace(",", "."));
+    ve2i3.value = format(ve2i1.value.replace(",", ".") * ve2i2.value.replace(",", ".") * 2.6);
+    if (ve2i3.value.replace(",", ".") > 0 && ve2i4.value.replace(",", ".") > 0) {
+      ve2i5.value = format(ve2i3.value.replace(",", ".") / ve2i4.value.replace(",", "."));
+    }
+    ve2i2.value = ve2i2.value.replace(".", ",");
+  });
+  ve2i3.addEventListener('input', function() {
+    ve2i1.value = format(ve2i3.value.replace(",", ".") / 2.6 / ve2i2.value.replace(",", "."));
+    ve2i2.value = format(ve2i3.value.replace(",", ".") / 2.6);
+    if (ve2i3.value.replace(",", ".") > 0 && ve2i4.value.replace(",", ".") > 0) {
+      ve2i5.value = format(ve2i3.value.replace(",", ".") / ve2i4.value.replace(",", "."));
+    }
+    ve2i3.value = ve2i3.value.replace(".", ",");
+  });
+  ve2i4.addEventListener('input', function() {
+    ve2i4.value = Math.round(ve2i4.value.replace(",", "."));
+    if (ve2i3.value.replace(",", ".") > 0 && ve2i4.value > 0) {
+      ve2i5.value = format(ve2i3.value.replace(",", ".") / ve2i4.value);
+    }
+    if (ve2i5.value.replace(",", ".") > 0) {
+      ve2i3.value = format(ve2i5.value.replace(",", ".") * ve2i4.value);
+      ve2i2.value = format(ve2i3.value.replace(",", ".") / 2.6);
+      ve2i1.value = format(ve2i3.value.replace(",", ".") / 2.6 / ve2i2.value.replace(",", "."));
+    }
+  });
+  ve2i5.addEventListener('input', function() {
+    if (ve2i5.value.replace(",", ".") > 0) {
+      ve2i3.value = format(ve2i5.value.replace(",", ".") * ve2i4.value);
+      ve2i2.value = format(ve2i3.value.replace(",", ".") / 2.6);
+      ve2i1.value = format(ve2i3.value.replace(",", ".") / 2.6 / ve2i2.value.replace(",", "."));
+    }
+    ve2i5.value = ve2i5.value.replace(".", ",");
+  });
+  // 3
+  var ve3i1 = document.getElementById('ve3i1');
+  var ve3i2 = document.getElementById('ve3i2');
+  var ve3i3 = document.getElementById('ve3i3');
+  var ve3i4 = document.getElementById('ve3i4');
+  var ve3i5 = document.getElementById('ve3i5');
+  ve3i1.addEventListener('input', function() {
+    ve3i3.value = format(ve3i1.value.replace(",", ".") * ve3i2.value.replace(",", ".") * 0.6);
+    if (ve3i3.value.replace(",", ".") > 0 && ve3i4.value.replace(",", ".") > 0) {
+      ve3i5.value = format(ve3i3.value.replace(",", ".") / ve3i4.value.replace(",", "."));
+    }
+    ve3i1.value = ve3i1.value.replace(".", ",");
+  });
+  ve3i2.addEventListener('input', function() {
+    if (ve3i3.value.replace(",", ".") > 0) ve3i1.value = format(ve3i3.value.replace(",", ".") / ve3i2.value.replace(",", "."));
+    ve3i3.value = format(ve3i1.value.replace(",", ".") * ve3i2.value.replace(",", ".") * 0.6);
+    if (ve3i3.value.replace(",", ".") > 0 && ve3i4.value.replace(",", ".") > 0) {
+      ve3i5.value = format(ve3i3.value.replace(",", ".") / ve3i4.value.replace(",", "."));
+    }
+    ve3i2.value = ve3i2.value.replace(".", ",");
+  });
+  ve3i3.addEventListener('input', function() {
+    ve3i1.value = format(ve3i3.value.replace(",", ".") / 0.6 / ve3i2.value.replace(",", "."));
+    ve3i2.value = format(ve3i3.value.replace(",", ".") / 0.6);
+    if (ve3i3.value.replace(",", ".") > 0 && ve3i4.value.replace(",", ".") > 0) {
+      ve3i5.value = format(ve3i3.value.replace(",", ".") / ve3i4.value.replace(",", "."));
+    }
+    ve3i3.value = ve3i3.value.replace(".", ",");
+  });
+  ve3i4.addEventListener('input', function() {
+    ve3i4.value = Math.round(ve3i4.value.replace(",", "."));
+    if (ve3i3.value.replace(",", ".") > 0 && ve3i4.value > 0) {
+      ve3i5.value = format(ve3i3.value.replace(",", ".") / ve3i4.value);
+    }
+    if (ve3i5.value.replace(",", ".") > 0) {
+      ve3i3.value = format(ve3i5.value.replace(",", ".") * ve3i4.value);
+      ve3i2.value = format(ve3i3.value.replace(",", ".") / 0.6);
+      ve3i1.value = format(ve3i3.value.replace(",", ".") / 0.6 / ve3i2.value.replace(",", "."));
+    }
+  });
+  ve3i5.addEventListener('input', function() {
+    if (ve3i5.value.replace(",", ".") > 0) {
+      ve3i3.value = format(ve3i5.value.replace(",", ".") * ve3i4.value);
+      ve3i2.value = format(ve3i3.value.replace(",", ".") / 0.6);
+      ve3i1.value = format(ve3i3.value.replace(",", ".") / 0.6 / ve3i2.value.replace(",", "."));
+    }
+    ve3i5.value = ve3i5.value.replace(".", ",");
+  });
+  // 4
+  var ve4i1 = document.getElementById('ve4i1');
+  var ve4i2 = document.getElementById('ve4i2');
+  var ve4i3 = document.getElementById('ve4i3');
+  var ve4i4 = document.getElementById('ve4i4');
+  var ve4i5 = document.getElementById('ve4i5');
+  ve4i1.addEventListener('input', function() {
+    ve4i3.value = format(ve4i1.value.replace(",", ".") * ve4i2.value.replace(",", ".") * 2.6);
+    if (ve4i3.value.replace(",", ".") > 0 && ve4i4.value.replace(",", ".") > 0) {
+      ve4i5.value = format(ve4i3.value.replace(",", ".") / ve4i4.value.replace(",", "."));
+    }
+    ve4i1.value = ve4i1.value.replace(".", ",");
+  });
+  ve4i2.addEventListener('input', function() {
+    if (ve4i3.value.replace(",", ".") > 0) ve4i1.value = format(ve4i3.value.replace(",", ".") / ve4i2.value.replace(",", "."));
+    ve4i3.value = format(ve4i1.value.replace(",", ".") * ve4i2.value.replace(",", ".") * 2.6);
+    if (ve4i3.value.replace(",", ".") > 0 && ve4i4.value.replace(",", ".") > 0) {
+      ve4i5.value = format(ve4i3.value.replace(",", ".") / ve4i4.value.replace(",", "."));
+    }
+    ve4i2.value = ve4i2.value.replace(".", ",");
+  });
+  ve4i3.addEventListener('input', function() {
+    ve4i1.value = format(ve4i3.value.replace(",", ".") / 2.6 / ve4i2.value.replace(",", "."));
+    ve4i2.value = format(ve4i3.value.replace(",", ".") / 2.6);
+    if (ve4i3.value.replace(",", ".") > 0 && ve4i4.value.replace(",", ".") > 0) {
+      ve4i5.value = format(ve4i3.value.replace(",", ".") / ve4i4.value.replace(",", "."));
+    }
+    ve4i3.value = ve4i3.value.replace(".", ",");
+  });
+  ve4i4.addEventListener('input', function() {
+    ve4i4.value = Math.round(ve4i4.value.replace(",", "."));
+    if (ve4i3.value.replace(",", ".") > 0 && ve4i4.value > 0) {
+      ve4i5.value = format(ve4i3.value.replace(",", ".") / ve4i4.value);
+    }
+    if (ve4i5.value.replace(",", ".") > 0) {
+      ve4i3.value = format(ve4i5.value.replace(",", ".") * ve4i4.value);
+      ve4i2.value = format(ve4i3.value.replace(",", ".") / 2.6);
+      ve4i1.value = format(ve4i3.value.replace(",", ".") / 2.6 / ve4i2.value.replace(",", "."));
+    }
+  });
+  ve4i5.addEventListener('input', function() {
+    if (ve4i5.value.replace(",", ".") > 0) {
+      ve4i3.value = format(ve4i5.value.replace(",", ".") * ve4i4.value);
+      ve4i2.value = format(ve4i3.value.replace(",", ".") / 2.6);
+      ve4i1.value = format(ve4i3.value.replace(",", ".") / 2.6 / ve4i2.value.replace(",", "."));
+    }
+    ve4i5.value = ve4i5.value.replace(".", ",");
+  });
+  // 5
+  var ve5i1 = document.getElementById('ve5i1');
+  var ve5i2 = document.getElementById('ve5i2');
+  var ve5i3 = document.getElementById('ve5i3');
+  var ve5i4 = document.getElementById('ve5i4');
+  var ve5i5 = document.getElementById('ve5i5');
+  ve5i1.addEventListener('input', function() {
+    ve5i3.value = format(ve5i1.value.replace(",", ".") * ve5i2.value.replace(",", ".") * 2.5);
+    if (ve5i3.value.replace(",", ".") > 0 && ve5i4.value.replace(",", ".") > 0) {
+      ve5i5.value = format(ve5i3.value.replace(",", ".") / ve5i4.value.replace(",", "."));
+    }
+    ve5i1.value = ve5i1.value.replace(".", ",");
+  });
+  ve5i2.addEventListener('input', function() {
+    if (ve5i3.value.replace(",", ".") > 0) ve5i1.value = format(ve5i3.value.replace(",", ".") / ve5i2.value.replace(",", "."));
+    ve5i3.value = format(ve5i1.value.replace(",", ".") * ve5i2.value.replace(",", ".") * 2.5);
+    if (ve5i3.value.replace(",", ".") > 0 && ve5i4.value.replace(",", ".") > 0) {
+      ve5i5.value = format(ve5i3.value.replace(",", ".") / ve5i4.value.replace(",", "."));
+    }
+    ve5i2.value = ve5i2.value.replace(".", ",");
+  });
+  ve5i3.addEventListener('input', function() {
+    ve5i1.value = format(ve5i3.value.replace(",", ".") / 2.5 / ve5i2.value.replace(",", "."));
+    ve5i2.value = format(ve5i3.value.replace(",", ".") / 2.5);
+    if (ve5i3.value.replace(",", ".") > 0 && ve5i4.value.replace(",", ".") > 0) {
+      ve5i5.value = format(ve5i3.value.replace(",", ".") / ve5i4.value.replace(",", "."));
+    }
+    ve5i3.value = ve5i3.value.replace(".", ",");
+  });
+  ve5i4.addEventListener('input', function() {
+    ve5i4.value = Math.round(ve5i4.value.replace(",", "."));
+    if (ve5i3.value.replace(",", ".") > 0 && ve5i4.value > 0) {
+      ve5i5.value = format(ve5i3.value.replace(",", ".") / ve5i4.value);
+    }
+    if (ve5i5.value.replace(",", ".") > 0) {
+      ve5i3.value = format(ve5i5.value.replace(",", ".") * ve5i4.value);
+      ve5i2.value = format(ve5i3.value.replace(",", ".") / 2.5);
+      ve5i1.value = format(ve5i3.value.replace(",", ".") / 2.5 / ve5i2.value.replace(",", "."));
+    }
+  });
+  ve5i5.addEventListener('input', function() {
+    if (ve5i5.value.replace(",", ".") > 0) {
+      ve5i3.value = format(ve5i5.value.replace(",", ".") * ve5i4.value);
+      ve5i2.value = format(ve5i3.value.replace(",", ".") / 2.5);
+      ve5i1.value = format(ve5i3.value.replace(",", ".") / 2.5 / ve5i2.value.replace(",", "."));
+    }
+    ve5i5.value = ve5i5.value.replace(".", ",");
+  });
+  // 6
+  var ve6i1 = document.getElementById('ve6i1');
+  var ve6i2 = document.getElementById('ve6i2');
+  var ve6i3 = document.getElementById('ve6i3');
+  var ve6i4 = document.getElementById('ve6i4');
+  var ve6i5 = document.getElementById('ve6i5');
+  ve6i1.addEventListener('input', function() {
+    ve6i3.value = format(ve6i1.value.replace(",", ".") * ve6i2.value.replace(",", ".") * 2.2);
+    if (ve6i3.value.replace(",", ".") > 0 && ve6i4.value.replace(",", ".") > 0) {
+      ve6i5.value = format(ve6i3.value.replace(",", ".") / ve6i4.value.replace(",", "."));
+    }
+    ve6i1.value = ve6i1.value.replace(".", ",");
+  });
+  ve6i2.addEventListener('input', function() {
+    if (ve6i3.value.replace(",", ".") > 0) ve6i1.value = format(ve6i3.value.replace(",", ".") / ve6i2.value.replace(",", "."));
+    ve6i3.value = format(ve6i1.value.replace(",", ".") * ve6i2.value.replace(",", ".") * 2.2);
+    if (ve6i3.value.replace(",", ".") > 0 && ve6i4.value.replace(",", ".") > 0) {
+      ve6i5.value = format(ve6i3.value.replace(",", ".") / ve6i4.value.replace(",", "."));
+    }
+    ve6i2.value = ve6i2.value.replace(".", ",");
+  });
+  ve6i3.addEventListener('input', function() {
+    ve6i1.value = format(ve6i3.value.replace(",", ".") / 2.2 / ve6i2.value.replace(",", "."));
+    ve6i2.value = format(ve6i3.value.replace(",", ".") / 2.2);
+    if (ve6i3.value.replace(",", ".") > 0 && ve6i4.value.replace(",", ".") > 0) {
+      ve6i5.value = format(ve6i3.value.replace(",", ".") / ve6i4.value.replace(",", "."));
+    }
+    ve6i3.value = ve6i3.value.replace(".", ",");
+  });
+  ve6i4.addEventListener('input', function() {
+    ve6i4.value = Math.round(ve6i4.value.replace(",", "."));
+    if (ve6i3.value.replace(",", ".") > 0 && ve6i4.value > 0) {
+      ve6i5.value = format(ve6i3.value.replace(",", ".") / ve6i4.value);
+    }
+    if (ve6i5.value.replace(",", ".") > 0) {
+      ve6i3.value = format(ve6i5.value.replace(",", ".") * ve6i4.value);
+      ve6i2.value = format(ve6i3.value.replace(",", ".") / 2.2);
+      ve6i1.value = format(ve6i3.value.replace(",", ".") / 2.2 / ve6i2.value.replace(",", "."));
+    }
+  });
+  ve6i5.addEventListener('input', function() {
+    if (ve6i5.value.replace(",", ".") > 0) {
+      ve6i3.value = format(ve6i5.value.replace(",", ".") * ve6i4.value);
+      ve6i2.value = format(ve6i3.value.replace(",", ".") / 2.2);
+      ve6i1.value = format(ve6i3.value.replace(",", ".") / 2.2 / ve6i2.value.replace(",", "."));
+    }
+    ve6i5.value = ve6i5.value.replace(".", ",");
+  });
+
+  // Electricity Carbon Calculator
+  // 1
+  var ecc1i1 = document.getElementById('ecc1i1');
+  var ecc1i2 = document.getElementById('ecc1i2');
+  ecc1i1.addEventListener('input', function() {
+    ecc1i2.value = format(ecc1i1.value.replace(",", ".") * 0.004);
+    ecc1i1.value = ecc1i1.value.replace(".", ",");
+  });
+  ecc1i2.addEventListener('input', function() {
+    ecc1i1.value = format(ecc1i2.value.replace(",", ".") / 0.004);
+    ecc1i2.value = ecc1i2.value.replace(".", ",");
+  });
+  // 2
+  var ecc2i1 = document.getElementById('ecc2i1');
+  var ecc2i2 = document.getElementById('ecc2i2');
+  ecc2i1.addEventListener('input', function() {
+    ecc2i2.value = format(ecc2i1.value.replace(",", ".") * 0.006);
+    ecc2i1.value = ecc2i1.value.replace(".", ",");
+  });
+  ecc2i2.addEventListener('input', function() {
+    ecc2i1.value = format(ecc2i2.value.replace(",", ".") / 0.006);
+    ecc2i2.value = ecc2i2.value.replace(".", ",");
+  });
+  // 3
+  var ecc3i1 = document.getElementById('ecc3i1');
+  var ecc3i2 = document.getElementById('ecc3i2');
+  ecc3i1.addEventListener('input', function() {
+    ecc3i2.value = format(ecc3i1.value.replace(",", ".") * 0.02);
+    ecc3i1.value = ecc3i1.value.replace(".", ",");
+  });
+  ecc3i2.addEventListener('input', function() {
+    ecc3i1.value = format(ecc3i2.value.replace(",", ".") / 0.02);
+    ecc3i2.value = ecc3i2.value.replace(".", ",");
+  });
+  // 4
+  var ecc4i1 = document.getElementById('ecc4i1');
+  var ecc4i2 = document.getElementById('ecc4i2');
+  ecc4i1.addEventListener('input', function() {
+    ecc4i2.value = format(ecc4i1.value.replace(",", ".") * 0.1);
+    ecc4i1.value = ecc4i1.value.replace(".", ",");
+  });
+  ecc4i2.addEventListener('input', function() {
+    ecc4i1.value = format(ecc4i2.value.replace(",", ".") / 0.1);
+    ecc4i2.value = ecc4i2.value.replace(".", ",");
+  });
+  // 5
+  var ecc5i1 = document.getElementById('ecc5i1');
+  var ecc5i2 = document.getElementById('ecc5i2');
+  ecc5i1.addEventListener('input', function() {
+    ecc5i2.value = format(ecc5i1.value.replace(",", ".") * 0.6);
+    ecc5i1.value = ecc5i1.value.replace(".", ",");
+  });
+  ecc5i2.addEventListener('input', function() {
+    ecc5i1.value = format(ecc5i2.value.replace(",", ".") / 0.6);
+    ecc5i2.value = ecc5i2.value.replace(".", ",");
+  });
+  // 6
+  var ecc6i1 = document.getElementById('ecc6i1');
+  var ecc6i2 = document.getElementById('ecc6i2');
+  ecc6i1.addEventListener('input', function() {
+    ecc6i2.value = format(ecc6i1.value.replace(",", ".") * 1);
+    ecc6i1.value = ecc6i1.value.replace(".", ",");
+  });
+  ecc6i2.addEventListener('input', function() {
+    ecc6i1.value = format(ecc6i2.value.replace(",", ".") / 1);
+    ecc6i2.value = ecc6i2.value.replace(".", ",");
+  });
+
+  // Food Carbon Calculator
+  // 1
+  var fcc1i1 = document.getElementById('fcc1i1');
+  var fcc1i2 = document.getElementById('fcc1i2');
+  var fcc1i3 = document.getElementById('fcc1i3');
+  fcc1i1.addEventListener('input', function() {
+    fcc1i2.value = format(fcc1i1.value.replace(",", ".") * 14);
+    fcc1i3.value = format(fcc1i1.value.replace(",", ".") * 32);
+    fcc1i1.value = fcc1i1.value.replace(".", ",");
+  });
+  fcc1i2.addEventListener('input', function() {
+    fcc1i1.value = format(fcc1i2.value.replace(",", ".") / 14);
+    fcc1i3.value = format(fcc1i1.value.replace(",", ".") * 32);
+    fcc1i2.value = fcc1i2.value.replace(".", ",");
+  });
+  fcc1i3.addEventListener('input', function() {
+    fcc1i1.value = format(fcc1i3.value.replace(",", ".") / 32);
+    fcc1i2.value = format(fcc1i1.value.replace(",", ".") * 14);
+    fcc1i3.value = fcc1i3.value.replace(".", ",");
+  });
+  // 2
+  var fcc2i1 = document.getElementById('fcc2i1');
+  var fcc2i2 = document.getElementById('fcc2i2');
+  var fcc2i3 = document.getElementById('fcc2i3');
+  fcc2i1.addEventListener('input', function() {
+    fcc2i2.value = format(fcc2i1.value.replace(",", ".") * 3.9);
+    fcc2i3.value = format(fcc2i1.value.replace(",", ".") * 10);
+    fcc2i1.value = fcc2i1.value.replace(".", ",");
+  });
+  fcc2i2.addEventListener('input', function() {
+    fcc2i1.value = format(fcc2i2.value.replace(",", ".") / 3.9);
+    fcc2i3.value = format(fcc2i1.value.replace(",", ".") * 10);
+    fcc2i2.value = fcc2i2.value.replace(".", ",");
+  });
+  fcc2i3.addEventListener('input', function() {
+    fcc2i1.value = format(fcc2i3.value.replace(",", ".") / 10);
+    fcc2i2.value = format(fcc2i1.value.replace(",", ".") * 3.9);
+    fcc2i3.value = fcc2i3.value.replace(".", ",");
+  });
+  // 3
+  var fcc3i1 = document.getElementById('fcc3i1');
+  var fcc3i2 = document.getElementById('fcc3i2');
+  var fcc3i3 = document.getElementById('fcc3i3');
+  fcc3i1.addEventListener('input', function() {
+    fcc3i2.value = format(fcc3i1.value.replace(",", ".") * 3.7);
+    fcc3i3.value = format(fcc3i1.value.replace(",", ".") * 6.9);
+    fcc3i1.value = fcc3i1.value.replace(".", ",");
+  });
+  fcc3i2.addEventListener('input', function() {
+    fcc3i1.value = format(fcc3i2.value.replace(",", ".") / 3.7);
+    fcc3i3.value = format(fcc3i1.value.replace(",", ".") * 6.9);
+    fcc3i2.value = fcc3i2.value.replace(".", ",");
+  });
+  fcc3i3.addEventListener('input', function() {
+    fcc3i1.value = format(fcc3i3.value.replace(",", ".") / 6.9);
+    fcc3i2.value = format(fcc3i1.value.replace(",", ".") * 3.7);
+    fcc3i3.value = fcc3i3.value.replace(".", ",");
+  });
+  // 4
+  var fcc4i1 = document.getElementById('fcc4i1');
+  var fcc4i2 = document.getElementById('fcc4i2');
+  var fcc4i3 = document.getElementById('fcc4i3');
+  fcc4i1.addEventListener('input', function() {
+    fcc4i2.value = format(fcc4i1.value.replace(",", ".") * 0.8);
+    fcc4i3.value = format(fcc4i1.value.replace(",", ".") * 1.3);
+    fcc4i1.value = fcc4i1.value.replace(".", ",");
+  });
+  fcc4i2.addEventListener('input', function() {
+    fcc4i1.value = format(fcc4i2.value.replace(",", ".") / 0.8);
+    fcc4i3.value = format(fcc4i1.value.replace(",", ".") * 1.3);
+    fcc4i2.value = fcc4i2.value.replace(".", ",");
+  });
+  fcc4i3.addEventListener('input', function() {
+    fcc4i1.value = format(fcc4i3.value.replace(",", ".") / 1.3);
+    fcc4i2.value = format(fcc4i1.value.replace(",", ".") * 0.8);
+    fcc4i3.value = fcc4i3.value.replace(".", ",");
+  });
+  // 5
+  var fcc5i1 = document.getElementById('fcc5i1');
+  var fcc5i2 = document.getElementById('fcc5i2');
+  var fcc5i3 = document.getElementById('fcc5i3');
+  fcc5i1.addEventListener('input', function() {
+    fcc5i2.value = format(fcc5i1.value.replace(",", ".") * 3.9);
+    fcc5i3.value = format(fcc5i1.value.replace(",", ".") * 4.9);
+    fcc5i1.value = fcc5i1.value.replace(".", ",");
+  });
+  fcc5i2.addEventListener('input', function() {
+    fcc5i1.value = format(fcc5i2.value.replace(",", ".") / 3.9);
+    fcc5i3.value = format(fcc5i1.value.replace(",", ".") * 4.9);
+    fcc5i2.value = fcc5i2.value.replace(".", ",");
+  });
+  fcc5i3.addEventListener('input', function() {
+    fcc5i1.value = format(fcc5i3.value.replace(",", ".") / 4.9);
+    fcc5i2.value = format(fcc5i1.value.replace(",", ".") * 3.9);
+    fcc5i3.value = fcc5i3.value.replace(".", ",");
+  });
+
+</script>
+
+</body>
+</html>
