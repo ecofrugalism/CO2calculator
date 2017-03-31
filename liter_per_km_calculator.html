@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Simple carbon calculator</title>
+	<meta charset="utf-8" />
+	<style type="text/css">
+    body {
+		font: 12pt arial; margin: 10;
+		color: #000000;
+		background-color: #ffffff;
+	}
+    h1 {
+		margin: 0; padding: 8px; font-size: 16pt;
+		}
+    h2 {
+		font-size: 14pt;
+		}
+    a:hover {
+		text-decoration: none;
+		}
+    #header {
+	background: #ffffff;
+	height: 40px;
+	text-align: center;
+	}
+	content {
+	margin: 40px 80px;
+	text-align: justify;
+	}
+
+    .input {width:130px; height:30px; display:inline-block; border: 1px solid #DDDDDD; font-size:24px; font-weight:bold; color:#666666;text-align:right;}
+
+   </style>
+</head>
+<body>
+
+<div id="header">
+<h1>Simple carbon calculator</h1>
+</div>
+
+<!-- Start content -->
+<div id="content">
+
+<h2>MPG to km/l calculator</h2>
+
+<p><input type="text" id="ca1i1" class="input" value="0"></input> miles/gallon = <input type="text" id="ca1i2" class="input" value="0"></input> km/l = <input type="text" id="ca1i3" class="input" value="0"></input> l/100km = <input type="text" id="ca1i4" class="input" value="0"></input> l/km</p>
+
+<h2>miles/kWh to km/kWh calculator</h2>
+
+<p><input type="text" id="ca2i1" class="input" value="0"></input> miles/kWh = <input type="text" id="ca2i2" class="input" value="0"></input> km/kWh = <input type="text" id="ca2i3" class="input" value="0"></input> kWh/100km = <input type="text" id="ca2i4" class="input" value="0"></input> kWh/km = <input type="text" id="ca2i5" class="input" value="0"></input> MPGe</p>
+
+<!-- End content -->
+</div>
+
+
+<script type="text/javascript">
+
+  function format(val) {
+
+    return parseFloat(val).toFixed(5).replace(".", ",").replace(/0+$/, "").replace(/,$/, "");
+
+  }
+
+  // 1
+  var ca1i1 = document.getElementById('ca1i1');
+  var ca1i2 = document.getElementById('ca1i2');
+  var ca1i3 = document.getElementById('ca1i3');
+  var ca1i4 = document.getElementById('ca1i4');
+  ca1i1.addEventListener('input', function() {
+    if (ca1i1.value.replace(",", ".") > 0) {
+      ca1i2.value = format(ca1i1.value.replace(",", ".") * (1.609 / 3.785));
+      ca1i4.value = format(1 / ca1i2.value.replace(",", "."));
+      ca1i3.value = format(ca1i4.value.replace(",", ".") * 100);
+    }
+    ca1i1.value = ca1i1.value.replace(".", ",");
+  });
+  ca1i2.addEventListener('input', function() {
+    if (ca1i2.value.replace(",", ".") > 0) {
+      ca1i1.value = format(ca1i2.value.replace(",", ".") / (1.609 / 3.785));
+      ca1i4.value = format(1 / ca1i2.value.replace(",", "."));
+      ca1i3.value = format(ca1i4.value.replace(",", ".") * 100);
+    }
+    ca1i2.value = ca1i2.value.replace(".", ",");
+  });
+  ca1i3.addEventListener('input', function() {
+    if (ca1i3.value.replace(",", ".") > 0) {
+      ca1i4.value = format(ca1i3.value.replace(",", ".") / 100);
+      ca1i2.value = format(1 / ca1i4.value.replace(",", "."));
+      ca1i1.value = format(ca1i2.value.replace(",", ".") / (1.609 / 3.785));
+    }
+    ca1i3.value = ca1i3.value.replace(".", ",");
+  });
+  ca1i4.addEventListener('input', function() {
+    if (ca1i4.value.replace(",", ".") > 0) {
+      ca1i2.value = format(1 / ca1i4.value.replace(",", "."));
+      ca1i3.value = format(ca1i4.value.replace(",", ".") * 100);
+      ca1i1.value = format(ca1i2.value.replace(",", ".") / (1.609 / 3.785));
+    }
+    ca1i4.value = ca1i4.value.replace(".", ",");
+  });
+  // 2
+  var ca2i1 = document.getElementById('ca2i1');
+  var ca2i2 = document.getElementById('ca2i2');
+  var ca2i3 = document.getElementById('ca2i3');
+  var ca2i4 = document.getElementById('ca2i4');
+  var ca2i5 = document.getElementById('ca2i5');
+  ca2i1.addEventListener('input', function() {
+    if (ca2i1.value.replace(",", ".") > 0) {
+      ca2i2.value = format(ca2i1.value.replace(",", ".") * 1.609);
+      ca2i4.value = format(1 / ca2i2.value.replace(",", "."));
+      ca2i3.value = format(ca2i4.value.replace(",", ".") * 100);
+      ca2i5.value = format(3370 / (ca2i3.value.replace(",", ".") / 1.609));
+    }
+    ca2i1.value = ca2i1.value.replace(".", ",");
+  });
+  ca2i2.addEventListener('input', function() {
+    if (ca2i1.value.replace(",", ".") > 0) {
+      ca2i1.value = format(ca2i2.value.replace(",", ".") / 1.609);
+      ca2i4.value = format(1 / ca2i2.value.replace(",", "."));
+      ca2i3.value = format(ca2i4.value.replace(",", ".") * 100);
+      ca2i5.value = format(3370 / (ca2i3.value.replace(",", ".") / 1.609));
+    }
+    ca2i2.value = ca2i2.value.replace(".", ",");
+  });
+  ca2i3.addEventListener('input', function() {
+    if (ca2i3.value.replace(",", ".") > 0) {
+      ca2i4.value = format(ca2i3.value.replace(",", ".") / 100);
+      ca2i2.value = format(1 / ca2i4.value.replace(",", "."));
+      ca2i1.value = format(ca2i2.value.replace(",", ".") / 1.609);
+      ca2i5.value = format(3370 / (ca2i3.value.replace(",", ".") / 1.609));
+    }
+    ca2i3.value = ca2i3.value.replace(".", ",");
+  });
+  ca2i4.addEventListener('input', function() {
+    if (ca2i4.value.replace(",", ".") > 0) {
+      ca2i3.value = format(ca2i4.value.replace(",", ".") * 100);
+      ca2i2.value = format(1 / ca2i4.value.replace(",", "."));
+      ca2i1.value = format(ca2i2.value.replace(",", ".") / 1.609);
+      ca2i5.value = format(3370 / (ca2i3.value.replace(",", ".") / 1.609));
+    }
+    ca2i4.value = ca2i4.value.replace(".", ",");
+  });
+  ca2i5.addEventListener('input', function() {
+    if (ca2i5.value.replace(",", ".") > 0) {
+      ca2i3.value = format((3370 / ca2i5.value.replace(",", ".")) * 1.609);
+      ca2i4.value = format(ca2i3.value.replace(",", ".") / 100);
+      ca2i2.value = format(1 / ca2i4.value.replace(",", "."));
+      ca2i1.value = format(ca2i2.value.replace(",", ".") / 1.609);
+    }
+    ca2i5.value = ca2i5.value.replace(".", ",");
+  });
+
+</script>
+
+</body>
+</html>
